@@ -1,0 +1,17 @@
+[project]
+name = "watch-data-dbt"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "dbt-core>=1.12.5",
+    "dbt-trino>=1.10.4",
+]
+
+[project.scripts]
+watch-data-dbt = "watch_data_dbt:main"
+
+[build-system]
+requires = ["uv_build>=0.12.2,<0.13.0"]
+build-backend = "uv_build"

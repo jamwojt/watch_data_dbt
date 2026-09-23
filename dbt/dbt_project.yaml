@@ -1,0 +1,23 @@
+name: watch_data
+version: "0.1.0"
+config-version: 2
+
+profile: watch_data
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+
+models:
+  watch_data:
+    staging:
+      +schema: staging
+      +materialized: view
+
+    silver:
+      +schema: silver
+      +materialized: table
+
+    gold:
+      +schema: gold
+      +materialized: table
