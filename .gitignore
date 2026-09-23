@@ -10,3 +10,5 @@ wheels/
 .venv
 
 dbt/profiles.yaml
+dbt/logs
+dbt/.user

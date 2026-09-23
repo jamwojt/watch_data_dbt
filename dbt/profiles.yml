@@ -1,0 +1,14 @@
+watch_data:
+  target: dev
+
+  outputs:
+    dev:
+      type: trino
+      method: none
+      user: dbt
+      host: localhost
+      port: 8080
+      catalog: lakehouse
+      schema: watch_data
+      threads: 1
+      http_scheme: http
