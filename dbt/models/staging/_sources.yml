@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: bronze
     database: lakehouse
-    schema: '"watch_data.bronze"'
+    schema: watch_data.bronze
     tables:
       - name: activity
       - name: stress

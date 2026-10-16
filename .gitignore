@@ -11,5 +11,6 @@ wheels/
 
 dbt/profiles.yaml
 dbt/logs
-dbt/.user
+dbt/.user.yml
 dbt/target
+logs
