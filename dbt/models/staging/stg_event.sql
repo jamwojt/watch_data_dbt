@@ -1,7 +1,7 @@
 select
     CAST(
         at_timezone(
-            from_unixtime(timestamp), 'europe/warsaw'
+            from_unixtime(timestamp), 'Europe/Warsaw'
         ) AS TIMESTAMP(6) WITH TIME ZONE
     ) as datetime,
     cast(device_id as integer) as device_id,
