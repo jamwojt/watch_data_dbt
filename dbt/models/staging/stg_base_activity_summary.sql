@@ -2,12 +2,12 @@ SELECT
     CAST(_id AS INTEGER) AS id,
     CAST(
         at_timezone(
-            from_unixtime(start_time), 'Europe/Warsaw'
+            from_unixtime(start_time / 1000), 'Europe/Warsaw'
         ) AS TIMESTAMP(6) WITH TIME ZONE
     ) AS start_datetime,
     CAST(
         at_timezone(
-            from_unixtime(end_time), 'Europe/Warsaw'
+            from_unixtime(end_time / 1000), 'Europe/Warsaw'
         ) AS TIMESTAMP(6) WITH TIME ZONE
     ) AS end_datetime,
     name,
