@@ -19,7 +19,6 @@ SELECT
     raw_details_path,
     CAST(device_id AS INTEGER) AS device_id,
     CAST(user_id AS INTEGER) AS user_id,
-    summary_data,
     raw_summary_data,
     _source_file,
     _ingested_at
