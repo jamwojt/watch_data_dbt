@@ -1,12 +1,12 @@
 SELECT
     CAST(
         at_timezone(
-            from_unixtime(timestamp), 'Europe/Warsaw'
+            from_unixtime(timestamp / 1000), 'Europe/Warsaw'
         ) AS TIMESTAMP(6) WITH TIME ZONE
     ) AS start_datetime,
     CAST(
         at_timezone(
-            from_unixtime(end_timestamp), 'Europe/Warsaw'
+            from_unixtime(end_timestamp / 1000), 'Europe/Warsaw'
         ) AS TIMESTAMP(6) WITH TIME ZONE
     ) AS end_datetime,
     CAST(device_id AS INTEGER) AS device_id,
