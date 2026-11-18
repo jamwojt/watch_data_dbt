@@ -10,5 +10,5 @@ SELECT
     metric_score,
     CAST(metric_extra AS INTEGER) AS metric_extra,
     _source_file,
-    _ingested_at
+    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
 FROM {{ source('bronze', 'generic_metric') }}

@@ -10,5 +10,5 @@ SELECT
     CAST(steps AS INTEGER) AS steps,
     CAST(raw_kind AS INTEGER) AS raw_kind,
     _source_file,
-    _ingested_at
+    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
 FROM {{ source('bronze', 'activity') }}

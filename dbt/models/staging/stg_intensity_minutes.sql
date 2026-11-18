@@ -9,5 +9,5 @@ SELECT
     CAST(moderate AS INTEGER) AS moderate,
     CAST(vigorous AS INTEGER) AS vigorous,
     _source_file,
-    _ingested_at
+    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
 FROM {{ source('bronze', 'intensity_minutes') }}

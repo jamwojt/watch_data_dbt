@@ -8,5 +8,5 @@ SELECT
     CAST(user_id AS INTEGER) AS user_id,
     CAST(count AS INTEGER) AS count,
     _source_file,
-    _ingested_at
+    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
 FROM {{ source('bronze', 'sleep_restless_moments') }}

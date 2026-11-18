@@ -3,7 +3,7 @@ WITH tmp_activity AS (
         CAST(_id AS INTEGER) AS id,
         json_parse(summary_data) AS summary_data,
         _source_file,
-        _ingested_at
+        CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
     FROM {{ source('bronze', 'base_activity_summary') }}
     WHERE activity_kind=67108874
 )
@@ -38,7 +38,16 @@ SELECT
     CAST(json_extract_scalar(summary_data, '$.hr_user_resting.value') AS INTEGER) AS hr_user_resting,
     CAST(json_extract_scalar(summary_data, '$.battery_level_start.value') AS INTEGER) AS battery_level_start,
     CAST(json_extract_scalar(summary_data, '$.battery_level_end.value') AS INTEGER) AS battery_level_end,
-    map_filter(CAST(summary_data AS MAP(VARCHAR, VARCHAR)), (k, v) -> regexp_like(k, '^interval_[0-9]+$')) AS intervals,
+    TRANSFORM(
+        FILTER(
+            MAP_ENTRIES(CAST(summary_data AS MAP(VARCHAR, JSON))),
+            x -> regexp_like(x[1], '^interval_[0-9]+$')
+        ),
+        x -> CAST(
+            ROW(x[1], json_format(x[2]))
+            AS ROW(key VARCHAR,  value VARCHAR)
+        )
+    ) AS intervals,
     _source_file,
-    _ingested_at
+    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
 FROM tmp_activity

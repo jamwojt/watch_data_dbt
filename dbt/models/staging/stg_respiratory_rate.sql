@@ -8,5 +8,5 @@ select
     cast(user_id as integer) as user_id,
     cast(respiratory_rate as integer) as respiratory_rate,
     _source_file,
-    _ingested_at
+    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
 from {{ source('bronze', 'respiratory_rate') }}

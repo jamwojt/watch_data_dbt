@@ -8,5 +8,5 @@ SELECT
     CAST(level AS INTEGER) AS level,
     CAST(battery_index AS INTEGER) AS battery_index,
     _source_file,
-    _ingested_at
+    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
 FROM {{ source('bronze', 'battery_level') }}

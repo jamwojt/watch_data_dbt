@@ -10,5 +10,5 @@ select
     cast(event_type as integer) as event_type,
     cast(data as integer) as data,
     _source_file,
-    _ingested_at
+    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
 from {{ source('bronze', 'event') }}

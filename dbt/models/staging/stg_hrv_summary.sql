@@ -13,5 +13,5 @@ select
     cast(baseline_balanced_lower as integer) as baseline_balanced_lower,
     cast(baseline_balanced_upper as integer) as baseline_balanced_upper,
     _source_file,
-    _ingested_at
+    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
 from {{ source('bronze', 'hrv_summary') }}
