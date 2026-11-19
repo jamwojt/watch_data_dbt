@@ -1,5 +1,5 @@
 SELECT
-    CAST(from_unixtime(timestamp / 1000)) AS TIMESTAMP(6) WITH TIME ZONE) AS datetime,
+    CAST(from_unixtime(timestamp / 1000) AS TIMESTAMP(6) WITH TIME ZONE) AS datetime,
     CAST(device_id AS INTEGER) AS device_id,
     CAST(user_id AS INTEGER) AS user_id,
     CAST(metric_type AS INTEGER) AS metric_type,

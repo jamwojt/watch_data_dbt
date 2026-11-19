@@ -3,7 +3,7 @@ WITH tmp_activity AS (
         CAST(_id AS INTEGER) AS id,
         json_parse(summary_data) AS summary_data,
         _source_file,
-        CAST(_ingested_at, AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
+        CAST(_ingested_at AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
     FROM {{ source('bronze', 'base_activity_summary') }}
     WHERE activity_kind=67108874
 )

@@ -1,5 +1,5 @@
 SELECT
-    CAST(from_unixtime(timestamp)) AS TIMESTAMP(6) WITH TIME ZONE) AS datetime,
+    CAST(from_unixtime(timestamp) AS TIMESTAMP(6) WITH TIME ZONE) AS datetime,
     CAST(device_id AS INTEGER) AS device_id,
     CAST(level AS INTEGER) AS level,
     CAST(battery_index AS INTEGER) AS battery_index,
