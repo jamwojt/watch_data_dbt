@@ -3,7 +3,7 @@ WITH tmp_activity AS (
         CAST(_id AS INTEGER) AS id,
         json_parse(summary_data) AS summary_data,
         _source_file,
-        CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
+        CAST(_ingested_at AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
     FROM {{ source('bronze', 'base_activity_summary') }}
     WHERE activity_kind=32
 )
@@ -44,5 +44,5 @@ SELECT
     CAST(json_extract_scalar(summary_data, '$.battery_level_start.value') AS INTEGER) AS start_battery_level,
     CAST(json_extract_scalar(summary_data, '$.battery_level_end.value') AS INTEGER) AS end_battery_level,
     _source_file,
-    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
+    _ingested_at
 FROM tmp_activity

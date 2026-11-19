@@ -1,15 +1,7 @@
 SELECT
     CAST(_id AS INTEGER) AS id,
-    CAST(
-        at_timezone(
-            from_unixtime(start_time / 1000), 'Europe/Warsaw'
-        ) AS TIMESTAMP(6) WITH TIME ZONE
-    ) AS start_datetime,
-    CAST(
-        at_timezone(
-            from_unixtime(end_time / 1000), 'Europe/Warsaw'
-        ) AS TIMESTAMP(6) WITH TIME ZONE
-    ) AS end_datetime,
+    CAST(from_unixtime(start_time / 1000) AS TIMESTAMP(6) WITH TIME ZONE) AS start_datetime,
+    CAST(from_unixtime(end_time / 1000) AS TIMESTAMP(6) WITH TIME ZONE) AS end_datetime,
     name,
     CAST(activity_kind AS INTEGER) AS activity_kind,
     base_longitude,
@@ -21,5 +13,5 @@ SELECT
     CAST(user_id AS INTEGER) AS user_id,
     raw_summary_data,
     _source_file,
-    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
+    CAST(_ingested_at AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
 FROM {{ source('bronze', 'base_activity_summary') }}

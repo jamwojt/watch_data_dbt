@@ -18,5 +18,5 @@ SELECT
     CAST(json_extract(value, '$[3].value') AS INTEGER) AS bpm,
     CAST(json_extract(value, '$[4].value') AS REAL) AS seconds,
     _source_file,
-    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
+    CAST(_ingested_at AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
 FROM tmp

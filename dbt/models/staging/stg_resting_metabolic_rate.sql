@@ -1,12 +1,8 @@
 SELECT
-    CAST(
-        at_timezone(
-            from_unixtime(timestamp), 'Europe/Warsaw'
-        ) AS TIMESTAMP(6) WITH TIME ZONE
-    ) AS datetime,
+    CAST(from_unixtime(timestamp)) AS TIMESTAMP(6) WITH TIME ZONE) AS datetime,
     CAST(device_id AS INTEGER) AS device_id,
     CAST(user_id AS INTEGER) AS user_id,
     CAST(restime_metabolic_rate AS INTEGER) AS restime_metabolic_rate,
     _source_file,
-    CAST(at_timezone(_ingested_at, 'Europe/Warsaw') AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
+    CAST(_ingested_at AS TIMESTAMP(6) WITH TIME ZONE) AS _ingested_at
 FROM {{ source('bronze', 'resting_metabolic_rate') }}
